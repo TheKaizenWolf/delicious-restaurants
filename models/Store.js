@@ -18,4 +18,14 @@ const storeSchema = new mongoose.Schema({
   tags: [String],
 });
 
+storeSchema.pre('save', function(next) {
+  if (!this.isModified('name')) {
+    next(); // skip this
+    return; // don't run the function
+  }
+  this.slug = slug(this.name);
+  next();
+  // TODO work on unique slugs
+});
+
 module.exports = mongoose.model('Store', storeSchema);
