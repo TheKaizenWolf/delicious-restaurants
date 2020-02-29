@@ -53,7 +53,6 @@ storeSchema.pre('save', async function(next) {
     this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
   }
   next();
-  // TODO work on unique slugs
 });
 
 module.exports = mongoose.model('Store', storeSchema);
