@@ -50,7 +50,11 @@ router.post(
   catchErrors(authController.update)
 );
 router.get('/map', storeController.mapPage);
-
+router.get(
+  '/hearts',
+  authController.isLoggedIn,
+  catchErrors(storeController.getHearts)
+);
 /* API */
 router.get('/api/search', catchErrors(storeController.searchStores));
 router.get('/api/stores/near', catchErrors(storeController.mapStores));
